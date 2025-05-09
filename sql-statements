@@ -1,0 +1,28 @@
+create table if not exists sales (
+	id serial primary key,
+	product varchar(100) not null,
+	price numeric(10,2) not null,
+	quantity integer not null
+);
+
+
+insert into sales (product, price, quantity) values
+  ('Laptop', 1000, 5),
+  ('Phone',  700,  3),
+  ('Tablet',  500,  2),
+  ('Printer', 300,  4);
+
+SELECT *
+FROM sales
+LIMIT 2;
+
+select
+sum (price*quantity) as total_value
+from sales;
+
+select
+  product,
+  sum (quantity) as total_quantity,
+  avg (price) as average_price
+from sales
+group by product;
